@@ -16,6 +16,8 @@ void game::start() {
 
             srand (time(NULL));
             int winningNum = rand() % 5 + 1;
+
+            gameFinish = runGame(playerChoice, winningNum, betting);
         }
     }
 }
@@ -83,4 +85,29 @@ int game::choicePromt() {
         }
     }
     return choice;
+}
+
+bool game::runGame(int playerChoice, int winningNum, double betting) {
+    cout << endl << "The Winning Number Was: " << winningNum << endl;
+    if(playerChoice == winningNum) {
+        cout << "Congrats You Won!" << endl;
+        cout.precision(7);
+        cout << "== Adding $" << betting << " To Your Funds! ==" << endl;
+        totalMoney += betting;
+    } else {
+        cout << "Too Bad!" << endl;
+        cout.precision(7);
+        cout << "== Subtracting $" << betting << " From Your Funds! ==" << endl;
+        totalMoney -= betting;
+    }
+
+    cout.precision(7);
+    cout << "#### Total Funds: $" << totalMoney << " ####" << endl;
+
+    if(totalMoney == 0) {
+        cout << "You Are Out Of Funds To Play! ~Come Play Again!~" << endl << endl;
+        return true;
+    }
+
+    return false;
 }
