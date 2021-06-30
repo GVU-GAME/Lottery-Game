@@ -19,6 +19,7 @@ class game {
         double totalMoney;
         double betPromt();
         double gettingStarted();
+        int choicePromt();
 };
 
 

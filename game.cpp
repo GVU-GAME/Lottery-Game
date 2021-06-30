@@ -12,7 +12,7 @@ void game::start() {
             cout << "Exiting Game! ~Come Play Again~" << endl << endl;
             gameFinish = true;
         } else {
-            //add code
+            int playerChoice = choicePromt();
         }
     }
 }
@@ -63,4 +63,21 @@ double game::betPromt() {
         }
     }
     return betting;
+}
+
+int game::choicePromt() {
+    bool validChoice = false;
+    int choice;
+    while(!validChoice) {
+        cout << endl << "Choose A Number From 1-5" << endl;
+        cout << "Choice: ";
+        cin >> choice;
+
+        if(choice > 5 || choice < 1) {
+            cout << "That Is Not A Valid Choice!" << endl;
+        } else {
+            validChoice = true;
+        }
+    }
+    return choice;
 }
