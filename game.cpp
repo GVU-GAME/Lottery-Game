@@ -15,7 +15,7 @@ void game::start() {
             int playerChoice = choicePromt();
 
             srand (time(NULL));
-            int winningNum = rand() % 5 + 1;
+            int winningNum = rand() % 3 + 1;
 
             gameFinish = runGame(playerChoice, winningNum, betting);
         }
@@ -74,11 +74,11 @@ int game::choicePromt() {
     bool validChoice = false;
     int choice;
     while(!validChoice) {
-        cout << endl << "Choose A Number From 1-5" << endl;
+        cout << endl << "Choose A Number From 1-3" << endl;
         cout << "Choice: ";
         cin >> choice;
 
-        if(choice > 5 || choice < 1) {
+        if(choice > 3 || choice < 1) {
             cout << "That Is Not A Valid Choice!" << endl;
         } else {
             validChoice = true;
