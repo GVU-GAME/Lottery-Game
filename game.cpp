@@ -14,14 +14,10 @@ void game::start() {
         } else {
             int playerChoice = choicePromt();
 
-            int winningNum = random();
+            srand (time(NULL));
+            int winningNum = rand() % 5 + 1;
         }
     }
-}
-
-int game::random() {
-    srand (time(NULL));
-    return rand() % 5 + 1;
 }
 
 double game::gettingStarted() {
