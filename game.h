@@ -20,6 +20,7 @@ class game {
         double betPromt();
         double gettingStarted();
         int choicePromt();
+        int random();
 };
 
 

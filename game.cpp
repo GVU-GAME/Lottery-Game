@@ -13,8 +13,15 @@ void game::start() {
             gameFinish = true;
         } else {
             int playerChoice = choicePromt();
+
+            int winningNum = random();
         }
     }
+}
+
+int game::random() {
+    srand (time(NULL));
+    return rand() % 5 + 1;
 }
 
 double game::gettingStarted() {
