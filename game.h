@@ -6,6 +6,7 @@
 #include <string>
 #include <cmath>
 #include <iomanip>
+#include <windows.h>
 
 using namespace std;
 
@@ -16,9 +17,8 @@ class game {
 
     private:
         double totalMoney;
-        void promt();
+        double betPromt();
         double gettingStarted();
-        bool endGame();
 };
 
 
