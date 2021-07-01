@@ -5,6 +5,11 @@ game::game() {
     totalMoney = gettingStarted();
 }
 
+//adds a delay so players can read the text
+void delay(int time = 300) {
+    Sleep(time);
+}
+
 //directs game
 void game::start() {
     //game loop
@@ -13,6 +18,7 @@ void game::start() {
         //gets player bet
         double betting = betPromt();
         if(betting == 0) {
+            delay();
             cout << "Exiting Game! ~Come Play Again~" << endl << endl;
             gameFinish = true;
         } else {
@@ -34,6 +40,7 @@ double game::gettingStarted() {
     double wallet;
     string temp;
 
+    delay();
     cout << "How Much Money Do You Want To Put In?" << endl;
     cout << "-- Only $10,000 Max Per Game Session! --" << endl;
 
@@ -46,6 +53,7 @@ double game::gettingStarted() {
         wallet = stod(temp);
 
         if(wallet > 10000) {
+            delay();
             cout << "Sorry Only $10,000 Per Game Session!" << endl;
         } else {
             validNum = true;
@@ -61,6 +69,7 @@ double game::betPromt() {
     bool validChoice = false;
     double betting;
     while(!validChoice) {
+        delay();
         cout << endl << "How Much Do You Want To Bet?" << endl;
         cout << "~Enter 0 To Quit~" << endl;
 
@@ -87,6 +96,7 @@ int game::choicePromt() {
     bool validChoice = false;
     int choice;
     while(!validChoice) {
+        delay();
         cout << endl << "Choose A Number From 1-4" << endl;
         cout << "Choice: ";
         cin >> choice;
@@ -102,7 +112,10 @@ int game::choicePromt() {
 
 //checks if player won or if game is over
 bool game::runGame(int playerChoice, int winningNum, double betting) {
+    delay();
     cout << endl << "The Winning Number Was: " << winningNum << endl;
+    delay(600);
+
     if(playerChoice == winningNum) {
         cout << "Congrats You Won!" << endl;
         cout.precision(7);
@@ -115,11 +128,14 @@ bool game::runGame(int playerChoice, int winningNum, double betting) {
         totalMoney -= betting;
     }
 
+    delay();
     cout.precision(7);
     cout << "#### Total Funds: $" << totalMoney << " ####" << endl;
+    delay(600);
 
     //exits game once player is out of money to play with
     if(totalMoney == 0) {
+        delay();
         cout << "You Are Out Of Funds To Play! ~Come Play Again!~" << endl << endl;
         return true;
     }
