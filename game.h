@@ -7,6 +7,7 @@
 #include <cmath>
 #include <iomanip>
 #include <windows.h>
+#include <cctype>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ class game {
         int choicePromt();
         bool runGame(int, int, double);
         void rulesPromt();
+        bool playAgain();
 };
 
 

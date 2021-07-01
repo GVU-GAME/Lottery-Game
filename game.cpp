@@ -31,7 +31,7 @@ void game::start() {
             int winningNum = rand() % 5 + 1;
 
             //checks if the player won
-            gameFinish = runGame(playerChoice, winningNum, betting);
+            gameFinish = !runGame(playerChoice, winningNum, betting);
         }
     }
 }
@@ -117,6 +117,21 @@ int game::choicePromt() {
     return choice;
 }
 
+//asks if the player wants to play again
+bool game::playAgain() {
+    char temp;
+    cout << "\nDo You Want To Play Again? Y/N: ";
+    cin >> temp;
+
+    if(toupper(temp) == 'N') {
+        return false;
+    }
+
+    cout << "\n\n";
+
+    return true;
+}
+
 //checks if player won or if game is over
 bool game::runGame(int playerChoice, int winningNum, double betting) {
     delay();
@@ -144,8 +159,8 @@ bool game::runGame(int playerChoice, int winningNum, double betting) {
     if(totalMoney == 0) {
         delay();
         cout << "You Are Out Of Funds To Play! ~Come Play Again!~" << endl << endl;
-        return true;
+        return false;
     }
 
-    return false;
+    return playAgain();
 }
