@@ -1,27 +1,35 @@
 #include "game.h"
 
+//default constructor, gets the initial funds from player
 game::game() {
     totalMoney = gettingStarted();
 }
 
+//directs game
 void game::start() {
+    //game loop
     bool gameFinish = false;
     while(!gameFinish) {
+        //gets player bet
         double betting = betPromt();
         if(betting == 0) {
             cout << "Exiting Game! ~Come Play Again~" << endl << endl;
             gameFinish = true;
         } else {
+            //gets player number
             int playerChoice = choicePromt();
 
+            //generates the winning number
             srand (time(NULL));
             int winningNum = rand() % 3 + 1;
 
+            //checks if the player won
             gameFinish = runGame(playerChoice, winningNum, betting);
         }
     }
 }
 
+//gets initial funds from player
 double game::gettingStarted() {
     double wallet;
     string temp;
@@ -29,6 +37,7 @@ double game::gettingStarted() {
     cout << "How Much Money Do You Want To Put In?" << endl;
     cout << "-- Only $10,000 Max Per Game Session! --" << endl;
 
+    //loops until a valid amount is entered
     bool validNum = false;
     while(!validNum) {
         cout << "Amount: $";
@@ -46,7 +55,9 @@ double game::gettingStarted() {
     return floor(wallet*100+.5)/100;
 }
 
+//gets the amount the player is betting
 double game::betPromt() {
+    //loops until a valid bet is made
     bool validChoice = false;
     double betting;
     while(!validChoice) {
@@ -70,7 +81,9 @@ double game::betPromt() {
     return betting;
 }
 
+//gets the player's choice
 int game::choicePromt() {
+    //loops until a valid number is picked
     bool validChoice = false;
     int choice;
     while(!validChoice) {
@@ -87,6 +100,7 @@ int game::choicePromt() {
     return choice;
 }
 
+//checks if player won or if game is over
 bool game::runGame(int playerChoice, int winningNum, double betting) {
     cout << endl << "The Winning Number Was: " << winningNum << endl;
     if(playerChoice == winningNum) {
@@ -104,6 +118,7 @@ bool game::runGame(int playerChoice, int winningNum, double betting) {
     cout.precision(7);
     cout << "#### Total Funds: $" << totalMoney << " ####" << endl;
 
+    //exits game once player is out of money to play with
     if(totalMoney == 0) {
         cout << "You Are Out Of Funds To Play! ~Come Play Again!~" << endl << endl;
         return true;

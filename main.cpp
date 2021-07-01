@@ -3,7 +3,7 @@
 int main () {
     try
     {
-        /* code */
+        //runs the game
         game Game;
         Game.start();
     }
