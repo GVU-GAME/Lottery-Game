@@ -2,6 +2,7 @@
 
 //default constructor, gets the initial funds from player
 game::game() {
+    rulesPromt();
     totalMoney = gettingStarted();
 }
 
@@ -27,12 +28,24 @@ void game::start() {
 
             //generates the winning number
             srand (time(NULL));
-            int winningNum = rand() % 4 + 1;
+            int winningNum = rand() % 5 + 1;
 
             //checks if the player won
             gameFinish = runGame(playerChoice, winningNum, betting);
         }
     }
+}
+
+void game::rulesPromt() {
+    cout << "\n\t\t=======Welcome To The Lottery Game!=======" << endl << endl;
+    cout << "\n\t\t===========Here Is How You Play!===========" << endl << endl;
+    cout << "\t1. Enter The Starting Balance To Play The Game With --Only $10,000 Max Per Game Session!--" << endl;
+    cout << "\t2. Enter The Amount Of The Starting Balance You Want TO Bet" << endl;
+    cout << "\t3. Choose A Number from 1 To 5" << endl;
+    cout << "\t4. Winner Will Recieve 2x The Amount Of the Money Bet" << endl;
+    cout << "\t5. Wrong Number And You Lose The Bet" << endl;
+    delay(600);
+    cout << "\n\t Simple Enough Right? Lets Begin!" << endl << endl;
 }
 
 //gets initial funds from player
@@ -41,13 +54,11 @@ double game::gettingStarted() {
     string temp;
 
     delay();
-    cout << "How Much Money Do You Want To Put In?" << endl;
-    cout << "-- Only $10,000 Max Per Game Session! --" << endl;
 
     //loops until a valid amount is entered
     bool validNum = false;
     while(!validNum) {
-        cout << "Amount: $";
+        cout << "Enter The Starting Balance: $";
         getline(cin, temp);
 
         wallet = stod(temp);
@@ -70,19 +81,16 @@ double game::betPromt() {
     double betting;
     while(!validChoice) {
         delay();
-        cout << endl << "How Much Do You Want To Bet?" << endl;
-        cout << "~Enter 0 To Quit~" << endl;
-
+        cout << "\n~~~~~Enter $0 To Quit~~~~~" << endl;
         cout.precision(7);
         cout << "#### Total Funds: $" << totalMoney << " ####" << endl;
-
-        cout << "Betting: $";
+        cout << "Enter The Amount You Want To Bet: $";
         cin >> betting;
 
         if(betting > totalMoney) {
-            cout << "Insufficent Funds!" << endl;
+            cout << "--Insufficent Funds!--" << endl;
         } else if(betting < 0) {
-            cout << "Invalid Number!" << endl;
+            cout << "--Invalid Number!--" << endl;
         } else {
             validChoice = true;
         }
@@ -97,11 +105,10 @@ int game::choicePromt() {
     int choice;
     while(!validChoice) {
         delay();
-        cout << endl << "Choose A Number From 1-4" << endl;
-        cout << "Choice: ";
+        cout << endl << "Choose A Number From 1-5: ";
         cin >> choice;
 
-        if(choice > 4 || choice < 1) {
+        if(choice > 5 || choice < 1) {
             cout << "That Is Not A Valid Choice!" << endl;
         } else {
             validChoice = true;
@@ -119,12 +126,12 @@ bool game::runGame(int playerChoice, int winningNum, double betting) {
     if(playerChoice == winningNum) {
         cout << "Congrats You Won!" << endl;
         cout.precision(7);
-        cout << "== Adding $" << betting << " To Your Funds! ==" << endl;
-        totalMoney += betting;
+        cout << "==Adding $" << (betting*2) << " To Your Funds!==" << endl;
+        totalMoney += (betting*2);
     } else {
         cout << "Too Bad!" << endl;
         cout.precision(7);
-        cout << "== Subtracting $" << betting << " From Your Funds! ==" << endl;
+        cout << "==Subtracting $" << betting << " From Your Funds!==" << endl;
         totalMoney -= betting;
     }
 
