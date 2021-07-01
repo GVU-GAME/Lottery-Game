@@ -124,6 +124,7 @@ bool game::playAgain() {
     cin >> temp;
 
     if(toupper(temp) == 'N') {
+        cout << "\nThank You For Playing, Come Play Again Sometimes!" << endl;
         return false;
     }
 
@@ -138,6 +139,7 @@ bool game::runGame(int playerChoice, int winningNum, double betting) {
     cout << endl << "The Winning Number Was: " << winningNum << endl;
     delay(600);
 
+    //checks if the players number matches the winning number
     if(playerChoice == winningNum) {
         cout << "Congrats You Won!" << endl;
         cout.precision(7);
