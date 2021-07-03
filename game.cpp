@@ -20,7 +20,7 @@ void game::start() {
         double betting = betPromt();
         if(betting == 0) {
             delay();
-            cout << "Exiting Game! ~Come Play Again~" << endl << endl;
+            cout << "Exiting The Game! ~Come Play Again~\n" << endl;
             gameFinish = true;
         } else {
             //gets player number
@@ -37,15 +37,15 @@ void game::start() {
 }
 
 void game::rulesPromt() {
-    cout << "\n\t\t=======Welcome To The Lottery Game!=======" << endl << endl;
-    cout << "\n\t\t===========Here Is How You Play!===========" << endl << endl;
+    cout << "\n\t\t=======Welcome To The Lottery Game!=======\n" << endl;
+    cout << "\n\t\t===========Here Is How You Play!===========\n" << endl;
     cout << "\t1. Enter The Starting Balance To Play The Game With --Only $10,000 Max Per Game Session!--" << endl;
-    cout << "\t2. Enter The Amount Of The Starting Balance You Want TO Bet" << endl;
-    cout << "\t3. Choose A Number from 1 To 5" << endl;
-    cout << "\t4. Winner Will Recieve 2x The Amount Of the Money Bet" << endl;
+    cout << "\t2. Enter The Amount Of The Starting Balance You Want To Bet" << endl;
+    cout << "\t3. Choose A Number From 1 To 5" << endl;
+    cout << "\t4. Winner Will Recieve 2x The Amount Of The Money Bet" << endl;
     cout << "\t5. Wrong Number And You Lose The Bet" << endl;
     delay(600);
-    cout << "\n\t Simple Enough Right? Lets Begin!" << endl << endl;
+    cout << "\n\t Simple Enough Right? Lets Begin!\n" << endl;
 }
 
 //gets initial funds from player
@@ -105,7 +105,7 @@ int game::choicePromt() {
     int choice;
     while(!validChoice) {
         delay();
-        cout << endl << "Choose A Number From 1-5: ";
+        cout << "\nChoose A Number From 1-5: ";
         cin >> choice;
 
         if(choice > 5 || choice < 1) {
@@ -136,7 +136,7 @@ bool game::playAgain() {
 //checks if player won or if game is over
 bool game::runGame(int playerChoice, int winningNum, double betting) {
     delay();
-    cout << endl << "The Winning Number Was: " << winningNum << endl;
+    cout << "\nThe Winning Number Was: " << winningNum << endl;
     delay(600);
 
     //checks if the players number matches the winning number
@@ -160,7 +160,7 @@ bool game::runGame(int playerChoice, int winningNum, double betting) {
     //exits game once player is out of money to play with
     if(totalMoney == 0) {
         delay();
-        cout << "You Are Out Of Funds To Play! ~Come Play Again!~" << endl << endl;
+        cout << "You Are Out Of Funds To Play! ~Come Play Again!~\n" << endl;
         return false;
     }
 
